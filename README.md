@@ -8,17 +8,17 @@ Make sure you have the following installed:
 ### Installation
 Clone this repo
 
-cd backend \\
-npm install
-npm install -g nodemon
+cd backend  
+npm install  
+npm install -g nodemon  
 
-cd ../frontend
-npm install
+cd ../frontend  
+npm install  
 
 ### Running the Application
 
-cd backend
-npx nodemon index.js
+cd backend  
+npx nodemon index.js  
 
-cd frontend
-npm start
+cd frontend  
+npm start  
