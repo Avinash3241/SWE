@@ -1,0 +1,52 @@
+.profile-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    width: 350px;
+    margin: 40px auto;
+    text-align: center;
+  }
+  
+  .profile-card h1 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+  
+  .profile-card form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .profile-card input {
+    margin: 8px 0;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  
+  .profile-card button {
+    margin-top: 12px;
+    padding: 12px;
+    border: none;
+    background:  #333;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .profile-card button:hover {
+    background:  #666262;
+  }
+  
