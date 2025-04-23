@@ -8,7 +8,7 @@ Make sure you have the following installed:
 ### Installation
 Clone this repo
 
-cd backend
+cd backend \\
 npm install
 npm install -g nodemon
 
