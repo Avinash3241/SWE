@@ -13,8 +13,8 @@ router.post('/login', async (req, res) => {
       .then(result => {
         const token = jwt.sign({ email }, 'SWE_15', { expiresIn: '1h' });
         user = result.rows[0];
-        if(password === user["password"]){
-          console.log('User:', result.rows[0]["password"]);
+        if(password === user["password_hash"]){
+          console.log('User:', result.rows[0]["password_hash"]);
           res.json({ message: 'Logged In Successfully', token, 
           "user" : user});
         }

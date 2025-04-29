@@ -7,7 +7,7 @@ router.post('/signup', async (req, res) => {
   const { name, email, password } = req.body;
 
     try {
-        const query = 'INSERT INTO users(name, email, password) VALUES ($1, $2, $3)';
+        const query = 'INSERT INTO users(name, email, password_hash) VALUES ($1, $2, $3)';
         const values = [name, email, password];
         pool.query(query, values)
           .then(result => {

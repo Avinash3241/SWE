@@ -12,7 +12,7 @@ function Login() {
       .then(res => {
         if(res.status === 200){
           localStorage.setItem('authToken',res.data.token);
-          localStorage.setItem('UserId',res.data.user.userId);
+          localStorage.setItem('UserId',res.data.user.user_id);
           console.log(res.data);  
           window.location.href = '/home';
         }

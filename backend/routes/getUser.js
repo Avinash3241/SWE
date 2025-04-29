@@ -7,7 +7,7 @@ router.post('/getUser', async (req, res) => {
   const { userId } = req.body;
 
   try {
-    const query = 'SELECT * FROM users WHERE "userId" = $1';
+    const query = 'SELECT * FROM users WHERE "user_id" = $1';
     const values = [userId];
     pool.query(query, values)
       .then(result => {

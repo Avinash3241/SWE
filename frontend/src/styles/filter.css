@@ -1,0 +1,36 @@
+.filter-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    border-radius: 8px;
+  }
+  
+  .filter-item {
+    margin-bottom: 15px;
+  }
+  
+  .filter-item label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  .filter-item select,
+  .filter-item input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .filter-item input[type="number"] {
+    width: 45%;
+    display: inline-block;
+  }
+  
+  .filter-item input[type="number"]:not(:last-child) {
+    margin-right: 10%;
+  }
+  

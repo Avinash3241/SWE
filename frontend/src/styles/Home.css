@@ -1,29 +1,50 @@
+/* Apply to entire document */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    font-family: sans-serif;
+}
+
+/* Main container */
 .home-container {
     min-height: 100vh;
     background: #f3f4f6;
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: stretch; /* Ensure components take full width */
-    padding: 0 20px; /* Optional: Add some padding for better spacing */
+    align-items: stretch; 
+    padding: 0 20px; 
+    overflow-x: hidden; /* Just in case child elements overflow */
 }
 
+/* Header */
 .home-header {
     width: 100%;
     background: #333;
     color: white;
     padding: 24px 0;
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2rem; /* reduce slightly for better fit */
     font-weight: bold;
-    margin-bottom: 20px; /* Optional: Adds space below header */
+    margin-bottom: 20px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
 }
 
+
+/* Search bar */
 .search-bar {
     display: flex;
-    justify-content: space-between; /* Spread items across the container */
+    justify-content: space-between; 
     width: 100%;
-    max-width: 100%; /* Allow the search bar to take the full width */
+    max-width: 100%; 
     margin: 20px 0;
 }
 
@@ -33,7 +54,6 @@
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px 0 0 4px;
-    box-sizing: border-box;
 }
 
 .search-bar button {

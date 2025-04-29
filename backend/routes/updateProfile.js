@@ -7,7 +7,7 @@ router.post('/updateProfile', async (req, res) => {
   const { userId, password } = req.body;
 
   try {
-    const query = 'UPDATE users SET password = $1 WHERE "userId" = $2;';
+    const query = 'UPDATE users SET password_hash = $1 WHERE "user_id" = $2;';
     const values = [password,userId];
     pool.query(query, values)
       .then(result => {
