@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import '../styles/Home.css';
 import '../styles/ProfileCard.css';
-
+import Dashboard from './dashboard';
 
 function Profile() {
     const [user, setUser] = useState(null);
@@ -52,10 +52,11 @@ function Profile() {
     if (!user) return <div>Loading profile...</div>;
 
     return (
+      <div className='Profile'>
+      <Dashboard />
         <div className="profile-card">
           <h1>User Profile</h1>
           {/* <img src={user.profilePic || "https://via.placeholder.com/150"} alt="Profile" className="profile-image" /> */}
-    
           <form onSubmit={handleSubmit}>
             <input type="text" placeholder="Name" value={user.name} readOnly />
             <input type="email" placeholder="Email" value={user.email} readOnly />
@@ -75,6 +76,7 @@ function Profile() {
             />
             <button type="submit">Update Profile</button>
           </form>
+        </div>
         </div>
       );
 };

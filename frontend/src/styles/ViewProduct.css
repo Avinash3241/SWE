@@ -3,7 +3,7 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
-    /* justify-content: center; */
+    justify-content: flex-start;
     padding: 20px;
     width:100%;
   }
@@ -17,6 +17,7 @@
     width: 100%;
     color: white;
     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    margin: 20px;
   }
   
   .product-image1 {
@@ -47,10 +48,12 @@
     color: #333;
     border: none;
     padding: 12px 24px;
+    margin: 12px 24px;
     font-size: 16px;
     border-radius: 8px;
     cursor: pointer;
     transition: background 0.3s;
+    justify-content: center;
   }
   
   .buy-button1:hover {

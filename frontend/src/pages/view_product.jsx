@@ -8,6 +8,8 @@ const ViewProduct = () => {
   const [product, setProduct] = useState(null);
   const [seller, setSeller] = useState(null);
 
+  console.log("ProductId:", product_id);
+
   useEffect(() => {
       axios.post(`${process.env.REACT_APP_API_URL}/getProduct`, { productId:product_id, isAll:0 })
             .then(res => setProduct(res.data.products[0]))

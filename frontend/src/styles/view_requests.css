@@ -1,0 +1,119 @@
+.buyer-info {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.buyer-info h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.buyer-info p {
+    font-size: 1rem;
+    margin: 5px 0;
+    line-height: 1.5;
+    color: #555;
+}
+
+.buyer-info p strong {
+    color: #000;
+}
+
+.buy-button1 {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin: 10px 5px 0 0;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.buy-button1:hover {
+    background-color: #333;
+}
+
+.buy-button1.accept {
+    background-color: #28a745;
+}
+
+.buy-button1.accept:hover {
+    background-color: #218838;
+}
+
+.buy-button1.reject {
+    background-color: #dc3545;
+}
+
+.buy-button1.reject:hover {
+    background-color: #c82333;
+}
+
+.view-requests-container1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    text-decoration-color: #000;
+}
+
+.product-card1 {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.product-card1 h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+.product-card1 p {
+    font-size: 1rem;
+    margin: 5px 0;
+    line-height: 1.5;
+    color: #555;
+}
+.product-card1 p strong {
+    color: #000;
+}
+.product-card1 label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333333;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.product-card1 textarea {
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.product-card1 textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+.product-card1 input[type="file"] {
+    padding: 5px;
+}
+.product-name1 {
+    /* font-size: 1.2rem; */
+    font-weight: bold;
+    color: #333;
+}

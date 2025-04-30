@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // import axios from 'axios';
-import '../styles/filter.css'
+// import '../styles/filter.css'
 
 const ProductFilter = ({ onFilterChange }) => {
   const [minPrice, setMinPrice] = useState(0);
