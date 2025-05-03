@@ -16,8 +16,11 @@ function Login() {
           console.log(res.data);  
           window.location.href = '/home';
         }
+        else{
+          alert("Invalid Credentials");
+        }
       })
-      .catch(err => alert(err.response?.data?.error || 'Login failed'));
+      .catch(err => alert(err.response?.data?.error || 'Invalid Credentials'));
   };
 
   return (

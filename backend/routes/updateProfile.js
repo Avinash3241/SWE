@@ -4,11 +4,19 @@ const jwt = require('jsonwebtoken');
 const pool = require('../db/db.js');
 
 router.post('/updateProfile', async (req, res) => {
-  const { userId, password } = req.body;
+  const { userId, password, contact_info, address } = req.body;
 
   try {
-    const query = 'UPDATE users SET password_hash = $1 WHERE "user_id" = $2;';
-    const values = [password,userId];
+    var query,values;
+    if(password === ""){
+      query = 'UPDATE users SET contact_info = $1, address = $2 WHERE "user_id" = $3;';
+      values = [contact_info, address, userId];
+    }
+    else{
+      query = 'UPDATE users SET password_hash = $1, contact_info = $2, address = $3 WHERE "user_id" = $4;';
+      values = [password, contact_info, address, userId];
+    }
+    console.log("hello world",contact_info)
     pool.query(query, values)
       .then(result => {
             res.json({message: "Profile Updated successfully"});

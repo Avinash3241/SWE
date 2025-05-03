@@ -7,6 +7,7 @@ function SignUp() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [contact_info, setContactInfo] = useState('');
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -36,7 +37,7 @@ function SignUp() {
         .then(res => {
           console.log("res",res);
           if(res.data.isUser === 0){
-            axios.post(`${process.env.REACT_APP_API_URL}/signup`, { name, email, password })
+            axios.post(`${process.env.REACT_APP_API_URL}/signup`, { name, email, password, contact_info })
             .then(res => window.location.href="/")
             .catch(err => alert(err.response?.data?.error || 'Signup failed'));
           }
@@ -56,6 +57,14 @@ function SignUp() {
           <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} required />
           <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
           <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <input 
+              type="tel" 
+              placeholder="10 digit Contact Number" 
+              onChange={(e) => setContactInfo(e.target.value)}
+              pattern="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"
+              title="Please enter a valid 10-digit phone number" 
+              required 
+            />
           <button type="submit">Sign Up</button>
         </form>
         <p>Already have an account? <Link to="/login">Login</Link></p>

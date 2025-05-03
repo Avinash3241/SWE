@@ -29,7 +29,7 @@ const EditProduct = () => {
         e.preventDefault();
         console.log("ProductId:", product_id);
         console.log("Product:", product);
-        axios.post(`${process.env.REACT_APP_API_URL}/updateProduct`, { product:product })
+        axios.post(`${process.env.REACT_APP_API_URL}/updateProduct`, { product:product,userId:localStorage.getItem('UserId')})
             .then(res => {
                 alert("Product updated successfully");
                 window.location.href = '/sellings';

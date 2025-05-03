@@ -18,6 +18,10 @@ router.post('/login', async (req, res) => {
           res.json({ message: 'Logged In Successfully', token, 
           "user" : user});
         }
+        else{
+          console.log('User:', result.rows[0]["password_hash"]);
+          res.status(500).send('Invalid Credentials');
+        }
       })
       .catch(err => {   
         console.error('No user Found', err);

@@ -16,7 +16,12 @@ function Sellings_history() {
 
         <div className="product-list">
           {products.map((product) => (
-            <ProductCard key={product.product_id} product={product} />
+            <div>
+                <ProductCard key={product.product_id} product={product} />
+                <div>
+                    {product.status === "removed" ? <h3 className='product-card-declined'>Product Removed</h3> : <h3 className='product-card-accepted'>Product Sold</h3>}
+                </div>
+            </div>
           ))}
           {/* <button>Edit this product</button>
           <button>Delete this product</button> */}

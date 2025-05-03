@@ -4,11 +4,11 @@ const jwt = require('jsonwebtoken');
 const pool = require('../db/db.js');
 
 router.post('/signup', async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, contact_info } = req.body;
 
     try {
-        const query = 'INSERT INTO users(name, email, password_hash) VALUES ($1, $2, $3)';
-        const values = [name, email, password];
+        const query = 'INSERT INTO users(name, email, password_hash, contact_info) VALUES ($1, $2, $3,$4)';
+        const values = [name, email, password, contact_info];
         pool.query(query, values)
           .then(result => {
             console.log('User inserted!');

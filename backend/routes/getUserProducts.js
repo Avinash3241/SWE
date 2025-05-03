@@ -57,7 +57,10 @@ router.post('/getUserProducts', async (req, res) => {
               products.price,\
               products.category_id,\
               products.created_at,\
-              purchase_requests.buyer_id as buyer_id\
+              products.status as p_status,\
+              purchase_requests.buyer_id as buyer_id,\
+              purchase_requests.status as p_r_status,\
+              purchase_requests.updated_at as p_r_up_time \
           FROM products JOIN purchase_requests ON products.product_id = purchase_requests.product_id\
           WHERE purchase_requests.buyer_id = $1 AND purchase_requests.status = $2';
           values = [userId, "pending"];
@@ -70,7 +73,10 @@ router.post('/getUserProducts', async (req, res) => {
               products.price,\
               products.category_id,\
               products.created_at,\
-              purchase_requests.buyer_id as buyer_id\
+              products.status as p_status,\
+              purchase_requests.buyer_id as buyer_id,\
+              purchase_requests.status as p_r_status,\
+              purchase_requests.updated_at as p_r_up_time \
           FROM products JOIN purchase_requests ON products.product_id = purchase_requests.product_id\
           WHERE purchase_requests.buyer_id = $1 AND purchase_requests.status != $2';
           values = [userId,"pending"];

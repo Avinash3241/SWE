@@ -18,7 +18,12 @@ function Buyings_history() {
 
         <div className="product-list">
           {products.map((product) => (
-            <ProductCard key={product.product_id} product={product} />
+            <div>
+                <ProductCard key={product.product_id} product={product} />
+                <div>
+                    {product.p_r_status === "accepted" ? <h3 className='product-card-accepted'>Accepted  at {new Date(product.p_r_up_time).toISOString().split('T')[0]}</h3> : <h3 className='product-card-declined'>Declined at {new Date(product.p_r_up_time).toISOString().split('T')[0]}</h3>}
+                </div>
+            </div>
           ))}
           {/* <button>Edit this product</button>
           <button>Delete this product</button> */}

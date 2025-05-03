@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken');
 const pool = require('../db/db.js');
 
 router.post('/updateProduct', async (req, res) => {
-  const { product } = req.body;
-  console.log(product,product.product_id,product.seller_id);
+  const { product,userId } = req.body;
+  console.log(product,product.product_id,product.seller_id,userId);
   try {
 
     var query,values;
@@ -18,7 +18,7 @@ router.post('/updateProduct', async (req, res) => {
                 category_id = $4 \
             WHERE \
                 product_id = $5 AND seller_id = $6';
-    values = [product.name, product.description, product.price, product.category_id, product.product_id, product.seller_id]
+    values = [product.name, product.description, product.price, product.category_id, product.product_id, userId];
 
     pool.query(query, values)
       .then(result => {
@@ -34,9 +34,9 @@ router.post('/updateProduct', async (req, res) => {
         "products" : products});
       })
       .catch(err => {   
-        console.error('Server error', err);
-        // res.status(500).send('Server Error');
-        res.json({ message: 'Server error'});
+        console.error('UnAuthorized access', err);
+        // res.status(500).send('UnAuthorized access');
+        res.json({ message: 'UnAuthorized access'});
       });
   } catch (err) {
     console.error(err.message);

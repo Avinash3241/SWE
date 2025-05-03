@@ -16,6 +16,8 @@ const viewRequests = require('./routes/viewRequests.js')
 const acceptRequest = require('./routes/acceptRequest.js')
 const rejectRequest = require('./routes/rejectRequest.js')
 const updateProduct = require('./routes/updateProduct.js')
+const getUsernotifications = require('./routes/getUsernotifications.js')
+const deleteNotification = require('./routes/deleteNotification.js')
 
 const app = express();
 app.use(cors());
@@ -34,7 +36,8 @@ app.use('/',viewRequests)
 app.use('/',acceptRequest)
 app.use('/',rejectRequest)
 app.use('/',updateProduct)
-
+app.use('/',getUsernotifications)
+app.use('/',deleteNotification)
 
 app.get('/', (req, res) => res.send('API Running'));
 app.listen(5000, () => console.log('Server running on port 5000'));

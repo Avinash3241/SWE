@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const pool = require('../db/db.js');
 
 router.post('/acceptRequest', async (req, res) => {
-  const { buyer_id, productId, user_id } = req.body;
+  const { buyer_id, productId, user_id , final_price } = req.body;
   console.log(buyer_id,productId,user_id)
   try {
 
@@ -43,14 +43,14 @@ router.post('/acceptRequest', async (req, res) => {
         }
         // var product = products[0];
 
-        var query2 = 'UPDATE products SET status = $1 WHERE product_id = $2 AND seller_id = $3';
+        var query2 = 'UPDATE products SET status = $1, price = $2 WHERE product_id = $3 AND seller_id = $4';
 
-        var values2 = ["sold",productId, user_id];
+        var values2 = ["sold",final_price,productId, user_id];
 
 
         pool.query(query2,values2)
         .then(result2 => {
-            console.log("Deleted the product");
+            console.log("Updated the product");
             
             for(var i=0;i<products.length;i++){
 
@@ -61,7 +61,7 @@ router.post('/acceptRequest', async (req, res) => {
                     // console.log("Skipping the notification for buyer_id",products[i].buyer_id);
                     var query5 = 'INSERT INTO notifications(user_id, content, is_read) VALUES ($1,$2,$3)';
 
-                    var content5 = 'Seller sold this product named '+product.product_name+' to you.'
+                    var content5 = 'Seller sold this product named '+product.product_name+' to you, Final Price: '+final_price;
 
                     var values5 = [product.buyer_id,content5,false];
 

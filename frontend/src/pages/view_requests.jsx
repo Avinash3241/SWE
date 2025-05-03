@@ -41,7 +41,21 @@ const ViewRequests = () => {
         console.log(localStorage.getItem('UserId'));
         if(txt === true){
             // Accepting the request;
-            axios.post(`${process.env.REACT_APP_API_URL}/acceptRequest`, { buyer_id:buyer_id, productId:product_id, user_id:localStorage.getItem('UserId') })
+            const final_price = window.prompt("Enter the final price");
+            console.log("Final Price:",final_price);
+            if(final_price === null || final_price === ""){
+                alert("Final price not entered");
+                return;
+            }
+
+            const priceNumber = Number(final_price);
+            if (isNaN(priceNumber) || priceNumber < 0 || priceNumber >= 1000000000 || !/^\d{1,8}(\.\d{1,2})?$/.test(final_price)) {
+                alert("Please enter a valid price (up to 8 digits before decimal and 2 after).");
+                return;
+            }
+
+            // Accepting the request;
+            axios.post(`${process.env.REACT_APP_API_URL}/acceptRequest`, { buyer_id:buyer_id, productId:product_id, user_id:localStorage.getItem('UserId'), final_price:final_price })
             .then(res => {
                 console.log(res.data);
                 alert("Request accepted successfully");
@@ -76,7 +90,7 @@ const ViewRequests = () => {
     return (
         <div>
             <h1>Requests for Your Products</h1>
-            {requests.length === 0 ? (
+            {(requests === undefined || requests.length === 0) ? (
                 <p>No requests found.</p>
             ) : (
                 <div className="view-product-container1">
