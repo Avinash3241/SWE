@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const pool = require('../db/db.js');
 
 router.post('/getProduct', async (req, res) => {
-  const { productId, isAll } = req.body;
+  const { productId, isAll, userId } = req.body;
   console.log(productId,isAll)
   try {
 
@@ -19,8 +19,8 @@ router.post('/getProduct', async (req, res) => {
                       products.created_at,\
                       categories.name as C_name\
        FROM products JOIN categories ON products.category_id = categories.category_id\
-       WHERE products.status = $1';
-        values = ["available"];
+       WHERE products.status = $1 AND products.seller_id != $2';
+        values = ["available",userId];
     }
     else{
       query = 'SELECT * FROM products WHERE "product_id" = $1';

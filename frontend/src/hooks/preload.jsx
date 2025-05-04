@@ -5,7 +5,7 @@ function Preload() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axios.post(`${process.env.REACT_APP_API_URL}/getProduct`, { productId: "none", isAll: 1 })
+    axios.post(`${process.env.REACT_APP_API_URL}/getProduct`, { productId: "none", isAll: 1, userId: localStorage.getItem('UserId') })
       .then(res => setProducts(res.data.products))
       .catch(err => alert(err.response?.data?.error || 'Product fetch failed'));
   }, []);
