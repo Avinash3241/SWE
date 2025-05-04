@@ -1,0 +1,64 @@
+/* General container for the requests page */
+.requests-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .request-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .request-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .request-card p {
+    font-size: 1rem;
+    margin: 5px 0;
+    line-height: 1.5;
+    color: #555;
+  }
+  
+  .request-buttons {
+    margin-top: 10px;
+  }
+  
+  .accept-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .accept-button:hover {
+    background-color: #218838;
+  }
+  
+  .decline-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .decline-button:hover {
+    background-color: #c82333;
+  }
+  .buy-page-container {
+    margin-top: 80px; /* Adjust this value to match the height of the top bar */
+}
+
+.content-area {
+    padding-top: 20px; /* Optional: Add padding for better spacing */
+}

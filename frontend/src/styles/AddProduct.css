@@ -1,0 +1,104 @@
+/* AddProduct.css */
+/* body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #e5e0ec, #b3e5fc); 
+  background-attachment: fixed;
+  min-height: 100vh;
+} */
+
+.content-area{
+  margin-top: 200px;
+}
+content-area
+/* Optional overlay pattern using pseudo-elements */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radal-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0);
+  background-size: 40px 40px;
+  z-index: -1;
+}
+
+/* Add padding to avoid collision with the top bar */
+.add-product-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 120px 0px; /* Add padding to account for the fixed top bar */
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Center the form */
+.add-product-form {
+  background-color: #ffffff;
+  padding: 40px 50px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 700px;
+  box-sizing: border-box;
+}
+
+.add-product-form h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+  font-size: 28px;
+}
+
+.add-product-form input,
+.add-product-form textarea,
+.add-product-form select {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.add-product-form input:focus,
+.add-product-form textarea:focus,
+.add-product-form select:focus {
+  outline: none;
+  border-color: #1976d2;
+  box-shadow: 0 0 5px rgba(25, 118, 210, 0.2);
+}
+
+.add-product-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.add-product-form button {
+  width: 100%;
+  padding: 14px;
+  background-color: #1976d2;
+  color: #ffffff;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.add-product-form button:hover {
+  background-color: #1565c0;
+}
+
+/* Responsive for phones */
+@media (max-width: 600px) {
+  .add-product-form {
+    padding: 25px 20px;
+    max-width: 100%;
+  }
+}

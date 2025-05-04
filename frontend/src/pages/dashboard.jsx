@@ -1,44 +1,59 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import '../styles/dashboard.css'
-
-function Home() {
-  return <h2>Home Page</h2>;
-}
-
-function Cart() {
-  return <h2>Cart Page</h2>;
-}
-
-function Buyer() {
-  return <h2>Buyer Page</h2>;
-}
-
-function Seller() {
-  return <h2>Seller Page</h2>;
-}
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import "../styles/dashboard.css";
 
 export default function Dashboard() {
+  const [isBuying, setIsBuying] = useState(true); // State to toggle between Buy and Sell portals
+  const location = useLocation(); // Get the current route
+  const navigate = useNavigate(); // Hook to programmatically navigate
+
+  useEffect(() => {
+    // Update the active portal based on the current route
+    if (location.pathname.startsWith("/buypage")) {
+      setIsBuying(true);
+    } else if (location.pathname.startsWith("/sellings")) {
+      setIsBuying(false);
+    }
+  }, [location.pathname]);
+
+  const handleSwitch = (portal) => {
+    if (portal === "buy") {
+      navigate("/buypage");
+    } else {
+      navigate("/sellings");
+    }
+  };
+
   return (
-    
-      <div className="dashboard">
-        <nav className="topbar">
-          <div className="nav-left">
-            <ul className="nav-links">
-              <li><Link to="/home">Home</Link></li>
-              <li><Link to="/cart">Cart</Link></li>
-              <li><Link to="/buyings">My Requests</Link></li>
-              <li><Link to="/sellings">My Sellings</Link></li>
-              <li><Link to="/buyings_history">My Requests History</Link></li>
-              <li><Link to="/sellings_history">My Sellings History</Link></li>
-            </ul>
-          </div>
-          <div className="nav-right">
-            <Link to="/profile" className="profile-link">Profile</Link>
-            <Link to="/logout" className="logout-link">Logout</Link>
-          </div>
-        </nav>
-      </div>
-    
+    <div className="dashboard">
+      <nav className="topbar">
+        {/* Left: Home */}
+        <div className="nav-left">
+          <Link to="/buypage" className="home-link">Home</Link> {/* Updated to navigate to /buypage */}
+        </div>
+
+        {/* Middle: Switch between Buy and Sell */}
+        <div className="nav-middle">
+          <button
+            className={`switch-button ${isBuying ? "active" : ""}`}
+            onClick={() => handleSwitch("buy")}
+          >
+            Buy
+          </button>
+          <button
+            className={`switch-button ${!isBuying ? "active" : ""}`}
+            onClick={() => handleSwitch("sell")}
+          >
+            Sell
+          </button>
+        </div>
+
+        {/* Right: Notifications and Profile */}
+        <div className="nav-right">
+          <Link to="/notification" className="notification-button">Notifications</Link>
+          <Link to="/profile" className="profile-link">Profile</Link>
+        </div>
+      </nav>
+    </div>
   );
 }

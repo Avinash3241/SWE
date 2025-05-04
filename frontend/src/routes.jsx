@@ -13,6 +13,16 @@ import Logout from "./pages/logout";
 import EditProduct from "./pages/edit_product";
 import Sellings_history from "./pages/seller_listings_history";
 import Buyings_history from "./pages/buyer_listings_history";
+import AddProduct from "./pages/AddProduct";
+import BuyPage from "./pages/BuyPage";  
+import Cart from "./pages/cart";
+import Drafts from "./pages/Drafts";
+import Notification from "./pages/notification";
+import StarredNotification from "./pages/starredNotifications";
+// import ProductCard from "./components/ProductCard";
+import Purchase_requests from "./pages/purchase_requests";
+import Sent_requests from "./pages/sent_requests";
+
 
 const routes = [
   {
@@ -112,7 +122,7 @@ const routes = [
     // errorElement: <ErrorPage />,
   },
   {
-    path: "/sellings_history",
+    path: "/sellings/sellings_history",
     element: (
       <PrivateRoute>
         <Sellings_history/>
@@ -121,7 +131,7 @@ const routes = [
     // errorElement: <ErrorPage />,
   },
   {
-    path: "/buyings_history",
+    path: "/buypage/buyings_history",
     element: (
       <PrivateRoute>
         <Buyings_history/>
@@ -129,6 +139,79 @@ const routes = [
     ),
     // errorElement: <ErrorPage />,
   },
+  {
+    path: "/sellings/addProduct",
+    element: (
+      <PrivateRoute>
+        <AddProduct/>
+      </PrivateRoute>
+    ),
+    // errorElement: <ErrorPage />,
+  },
+  {
+    path: "/sellings/drafts",
+    element: (
+      <PrivateRoute>
+        <Drafts/>
+      </PrivateRoute>
+    ),
+    // errorElement: <ErrorPage />,
+  },
+  {
+    path: "/notification",
+    element: (
+      <PrivateRoute>
+        <Notification/>
+      </PrivateRoute>
+    ),
+    // errorElement: <ErrorPage />,
+  },
+  {
+    path: "/starred_notification",
+    element: (
+      <PrivateRoute>
+        <StarredNotification/>
+      </PrivateRoute>
+    ),
+    // errorElement: <ErrorPage />,
+  },
+  {
+    path: "/buypage",
+    element: (
+      <PrivateRoute>
+        <BuyPage/>
+      </PrivateRoute>
+    ),
+    // errorElement: <ErrorPage />,
+  },
+  {
+    path: "/buypage/cart",
+    element: (
+      <PrivateRoute>
+        <Cart/>
+      </PrivateRoute>
+    ),
+    // errorElement: <ErrorPage />,
+  },
+  {
+    path: "/sellings/purchase_requests",
+    element: (
+      <PrivateRoute>
+        <Purchase_requests/>
+      </PrivateRoute>
+    ),
+    // errorElement: <ErrorPage />,
+  },
+  {
+    path: "/buypage/sent_requests",
+    element: (
+      <PrivateRoute>
+        <Sent_requests/>
+      </PrivateRoute>
+    ),
+    // errorElement: <ErrorPage />,
+  },
+  
 ];
 
 export default routes;
