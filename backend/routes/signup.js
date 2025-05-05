@@ -24,7 +24,7 @@ async function verifyEmailHunter(apiKey, email) {
     }
 }
 
-const API_KEY = '25437eea22872b9096050419376fc8a8887d5f3a';
+const API_KEY = '';
 
 // verifyEmailHunter(API_KEY, emailToCheck);
 
