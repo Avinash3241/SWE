@@ -50,7 +50,7 @@ export default function Dashboard() {
 
         {/* Right: Notifications and Profile */}
         <div className="nav-right">
-          <Link to="/notification" className="notification-button">Notifications</Link>
+          <Link to="/interested_categories" className="notification-button">Interested Categories</Link>
           <Link to="/profile" className="profile-link">Profile</Link>
         </div>
       </nav>

@@ -36,7 +36,7 @@ const PurchaseRequests = () => {
                 <div key={request.request_id} className="request-card">
                   <h2>{request.product_name}</h2>
                   <p>
-                    <strong>Price:</strong> ${request.product_price}
+                    <strong>Price:</strong> {request.product_price} INR
                   </p>
                   <p>
                     <strong>Description:</strong> {request.product_description}

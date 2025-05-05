@@ -17,7 +17,7 @@ const ProductCard = ({ product }) => {
         />
       </div>
       
-      <h2 className="product-name">{product.product_name}</h2>
+      <h2 className="product-name">{product.name}</h2>
       <p className="product-price">${product.price}</p>
       <button className="view-button" onClick={() => viewProduct(product.product_id)}>
         View Product

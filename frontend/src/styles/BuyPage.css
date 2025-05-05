@@ -1,93 +1,108 @@
 /* Container for the Buy Page */
 .buy-page-container {
-    display: flex;
-    min-height: 100vh;
-    overflow: hidden; /* Prevent horizontal overflow */
-  }
-  
-  /* Left: Vertical Menu */
-  .vertical-menu {
-    width: 200px;
-    background-color: #240f0f;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    border-right: 1px solid #ddd;
-    height: 100vh; /* Full height of the viewport */
-    overflow-y: auto; /* Allows scrolling if the menu content overflows */
-    margin-top: 150px; /* Add margin to prevent collision with the top bar */
-    position:sticky; /* Keeps the menu in place while scrolling */
-    top: 0;
-    left: 0;
-  }
-  
-  /* Buttons in the Vertical Menu */
-  .vertical-menu button {
-    padding: 10px 15px;
-    font-size: 16px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    cursor: pointer;
-    text-align: left;
-    background-color: green;
-    transition: background-color 0.3s ease;
-  }
-  
-  .vertical-menu button.active {
-    background-color: #1565c0;
-    color: white;
-    font-weight: bold;
-  }
-  
-  .vertical-menu button:hover {
-    background-color: #e0e0e0;
-  }
-  
-  /* Right: Content Area */
-  .content-area {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto; /* Enables vertical scrolling for the content area */
-    margin-top: 80px; /* Adds space to prevent collision with the top bar */
-  }
-  
-  /* Search Bar */
-  .search-bar1 {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 100%;
-    margin: 20px 0;
-    position: sticky;
-    top: 80px; /* Keeps the search bar below the top bar */
-    z-index: 10; /* Ensures the search bar stays above other content */
-    background-color: white; /* Matches the background color */
-    padding: 10px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
-  }
-  
-  .search-bar1 input {
-    flex: 1;
-    width: 90%;
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px 0 0 4px;
-  }
-  
-  .search-bar1 button {
-    padding: 12px 24px;
-    font-size: 16px;
-    max-width: 10%;
-    background: #333;
-    color: white;
-    border: none;
-    border-radius: 0 4px 4px 0;
-    cursor: pointer;
-  }
-  
-  .search-bar1 button:hover {
-    background: #000;
-  }
+  /* display: flex; */
+  min-height: 100vh;
+  overflow: hidden; /* Prevent horizontal overflow */
+}
+
+/* Left: Vertical Menu */
+.vertical-menu {
+  width: 100%;
+  background-color: #1e1e2f;
+  /* border-color: red; */
+  /* border-style: solid; */
+  padding: 10px 100px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  border-right: 1px solid #ddd;
+  height: fit-content;
+  z-index: 1000; /* Ensure it stays above other elements */
+  margin-top: 70px; /* Add margin to prevent collision with the top bar */
+  position:fixed; /* Keeps the menu in place while scrolling */
+  top: 0;
+  left: 0;
+}
+
+/* Buttons in the Vertical Menu */
+.vertical-menu button {
+  /* margin: 20px 100px; */
+  width: 150px;
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #fff;
+  /* border: 1px solid #ddd; */
+  border-radius: 4px;
+  cursor: pointer;
+  /* text-align: left; */
+  background-color: #0f161d;
+  transition: background-color 0.3s ease;
+}
+
+.vertical-menu button.active {
+  background-color: #1565c0;
+  color: white;
+  font-weight: bold;
+}
+
+.vertical-menu button:hover {
+  background-color: #e0e0e0;
+}
+
+/* Right: Content Area */
+.content-area {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto; /* Enables vertical scrolling for the content area */
+  margin-top: 80px; /* Adds space to prevent collision with the top bar */
+}
+
+/* Search Bar */
+.search-bar1 {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 100%;
+  margin: 20px 0;
+  /* position: fixed;
+  top: 100px; */
+  z-index: 10; /* Ensures the search bar stays above other content */
+  background-color: white; /* Matches the background color */
+  padding: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+}
+
+.search-bar1 input {
+  flex: 1;
+  width: 90%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+}
+
+.search-bar1 button {
+  padding: 12px 24px;
+  font-size: 16px;
+  max-width: 10%;
+  background: #333;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+.search-bar1 button:hover {
+  background: #000;
+}
+
+.buy-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top:140px;
+  padding: 20px;
+  background-color: #f9f9f9; /* Light background for the buy page */
+}

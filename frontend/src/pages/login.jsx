@@ -8,6 +8,7 @@ function Login() {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    console.log("Login clicked");
     axios
       .post(`${process.env.REACT_APP_API_URL}/login`, { email, password })
       .then((res) => {

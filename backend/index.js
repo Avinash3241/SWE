@@ -27,6 +27,8 @@ const sendRequest = require('./routes/sendRequest.js')
 const sent_requests = require('./routes/sent_requests.js')
 const cart = require('./routes/cart.js')
 // const notification = require('./routes/notification.js')
+const getUserInterests = require('./routes/getUserInterests.js')
+const updateUserInterests = require('./routes/updateUserInterests.js')
 
 const app = express();
 app.use(cors());
@@ -57,6 +59,8 @@ app.use('/',purchase_requests)
 app.use('/',sendRequest)
 app.use('/',sent_requests)
 app.use('/',cart)
+app.use('/',getUserInterests)
+app.use('/',updateUserInterests)
 // app.use('/',notification)
 
 app.get('/', (req, res) => res.send('API Running'));

@@ -55,10 +55,10 @@ const Cart = () => {
                 {cartItems.map(item => (
                   <li key={item.cart_id} className="cart-item">
                     <img
-                      src="/img.png"
-                      alt="Product"
-                      className="cart-item-image"
-                    />
+              src={`/uploads/${item.product_id}.png`} // Display the product image
+              alt="Product"
+              className="product-image"
+            />
                     <div className="cart-item-details">
                       <p className="cart-item-title">{item.product_name}</p>
                       <p className="cart-item-description">{item.description}</p>
@@ -66,14 +66,15 @@ const Cart = () => {
                       <p className="cart-item-status">
                         Status: {item.product_status === 'sold' ? 'Already Sold' : 'Available'}
                       </p>
-                    </div>
-                    <button
+                      <button
                       className="view-product-button"
                       onClick={() => handleViewProduct(item.product_id)}
                       disabled={item.product_status === 'sold'}
                     >
                       View Product
                     </button>
+                    </div>
+                    
                     <button
                       className="remove-item-button"
                       onClick={() => handleDelete(item.cart_id)}

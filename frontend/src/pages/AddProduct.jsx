@@ -4,6 +4,7 @@ import axios from "axios";
 import Dashboard from "./dashboard";
 import SellPortalSidebar from "../components/SellPortalSidebar";
 import "../styles/AddProduct.css";
+import Preload_Categories from "../hooks/Preload_categories";
 
 const AddProduct = () => {
   const [name, setName] = useState("");
@@ -84,7 +85,11 @@ const AddProduct = () => {
             >
               <option value="">Select Category</option>
               <option value={1}>Electronics</option>
-              <option value={2}>Utensils</option>
+              <option value={2}>Accessories</option>
+              <option value={3}>Audio</option>
+              <option value={4}>Furniture</option>
+              <option value={5}>Computers</option>
+              <option value={6}>Home Appliances</option>
             </select>
 
             <input
