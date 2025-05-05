@@ -4,55 +4,45 @@ const pool = require('../db/db.js');
 
 // Fetch cart items for a specific user
 router.post('/getCartItems', async (req, res) => {
-  const { buyerId } = req.body;
-
-  if (!buyerId) {
-    return res.status(400).json({ error: 'Buyer ID is required.' });
-  }
+  const { userId } = req.body;
 
   try {
     const query = `
       SELECT 
-        c.cart_id,
-        c.product_id,
-        c.added_at,
-        p.name AS product_name,
-        p.description AS product_description,
-        p.price AS product_price,
-        p.category_id,
+        c.cart_id, 
+        c.product_id, 
+        p.name AS product_name, 
+        p.price, 
+        p.description, 
+        p.seller_id, 
         p.status AS product_status
       FROM carts c
       JOIN products p ON c.product_id = p.product_id
       WHERE c.buyer_id = $1
     `;
-    const result = await pool.query(query, [buyerId]);
 
-    res.status(200).json({ cartItems: result.rows });
+    console.log('Fetching cart items for user:', userId);
+    const values = [userId];
+    const result = await pool.query(query, values);
+    res.json({ cartItems: result.rows });
   } catch (err) {
-    console.error('Error fetching cart items:', err.message);
-    res.status(500).json({ error: 'Failed to fetch cart items.' });
+    console.error('Error fetching cart items:', err);
+    res.status(500).send('Server Error');
   }
 });
 
 // Delete selected cart items
 router.post('/deleteCartItems', async (req, res) => {
-  const { buyerId, cartIds } = req.body;
-
-  if (!buyerId || !cartIds || cartIds.length === 0) {
-    return res.status(400).json({ error: 'Buyer ID and Cart IDs are required.' });
-  }
+  const { cartIds } = req.body;
 
   try {
-    const query = `
-      DELETE FROM carts
-      WHERE buyer_id = $1 AND cart_id = ANY($2::int[])
-    `;
-    await pool.query(query, [buyerId, cartIds]);
-
-    res.status(200).json({ message: 'Cart items deleted successfully.' });
+    const query = 'DELETE FROM carts WHERE cart_id = ANY($1::int[])';
+    const values = [cartIds];
+    await pool.query(query, values);
+    res.json({ message: 'Selected items deleted successfully' });
   } catch (err) {
-    console.error('Error deleting cart items:', err.message);
-    res.status(500).json({ error: 'Failed to delete cart items.' });
+    console.error('Error deleting cart items:', err);
+    res.status(500).send('Server Error');
   }
 });
 
@@ -81,33 +71,16 @@ router.post('/sendRequests', async (req, res) => {
 router.post('/addToCart', async (req, res) => {
   const { buyer_id, product_id } = req.body;
 
-  if (!buyer_id || !product_id) {
-    return res.status(400).json({ error: 'Buyer ID and Product ID are required.' });
-  }
-
   try {
-    // Check if the product is already in the cart for this buyer
-    const checkQuery = `
-      SELECT * FROM carts
-      WHERE buyer_id = $1 AND product_id = $2
-    `;
-    const checkResult = await pool.query(checkQuery, [buyer_id, product_id]);
-
-    if (checkResult.rows.length > 0) {
-      return res.status(400).json({ error: 'Product is already in the cart.' });
-    }
-
-    // Add the product to the cart
     const query = `
       INSERT INTO carts (buyer_id, product_id)
       VALUES ($1, $2)
-      RETURNING *
+      ON CONFLICT DO NOTHING
     `;
-    const result = await pool.query(query, [buyer_id, product_id]);
-
-    res.status(201).json({ message: 'Product added to cart.', cartItem: result.rows[0] });
+    await pool.query(query, [buyer_id, product_id]);
+    res.status(201).json({ message: 'Product added to cart successfully.' });
   } catch (err) {
-    console.error('Error adding to cart:', err.message);
+    console.error('Error adding product to cart:', err.message);
     res.status(500).json({ error: 'Failed to add product to cart.' });
   }
 });

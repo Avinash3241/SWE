@@ -25,6 +25,8 @@ const profile = require('./routes/profile.js')
 const purchase_requests = require('./routes/purchase_requests.js')
 const sendRequest = require('./routes/sendRequest.js')
 const sent_requests = require('./routes/sent_requests.js')
+const cart = require('./routes/cart.js')
+// const notification = require('./routes/notification.js')
 
 const app = express();
 app.use(cors());
@@ -54,6 +56,8 @@ app.use('/',profile)
 app.use('/',purchase_requests)
 app.use('/',sendRequest)
 app.use('/',sent_requests)
+app.use('/',cart)
+// app.use('/',notification)
 
 app.get('/', (req, res) => res.send('API Running'));
 app.listen(5000, () => console.log('Server running on port 5000'));

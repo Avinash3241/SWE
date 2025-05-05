@@ -76,32 +76,34 @@ router.get("/profile", async (req, res) => {
 });
 
 // Route to update user profile data and upload profile picture
-router.put("/", async (req, res) => {
-  const { userId, contact_info, address, profile_picture } = req.body;
-  console.log("Received data:", req.body);
+router.put("/profile", upload.single("profile_picture"), async (req, res) => {
+  const userId = req.body.userId;
+  const { contact_info, address } = req.body;
+  const profilePicture = req.file ? req.file.filename : null;
+
   try {
     const updateQuery = `
       UPDATE users
       SET 
-        contact_info = $1,
-        address = $2,
-        profile_picture = $3
+        contact_info = COALESCE($1, contact_info),
+        address = COALESCE($2, address),
+        profile_picture = COALESCE($3, profile_picture)
       WHERE user_id = $4
-      RETURNING profile_picture
+      RETURNING user_id
     `;
 
     const result = await pool.query(updateQuery, [
       contact_info,
       address,
-      profile_picture, // This should be null if the user wants to remove the picture
+      profilePicture,
       userId,
     ]);
-    console.log("Profile picture updated:", result.rows);
+
     if (result.rowCount === 0) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    res.status(200).json({ message: "Profile updated successfully", profile_picture: result.rows[0].profile_picture });
+    res.status(200).json({ message: "Profile updated successfully" });
   } catch (err) {
     console.error("Error updating profile:", err);
     res.status(500).json({ error: "Error updating profile" });

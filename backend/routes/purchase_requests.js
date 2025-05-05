@@ -50,19 +50,60 @@ router.put("/purchase_requests/:requestId", async (req, res) => {
   }
 
   try {
-    const query = `
+    // Update the status of the purchase request
+    const updateRequestQuery = `
       UPDATE purchase_requests
       SET status = $1
       WHERE request_id = $2
-      RETURNING *
+      RETURNING product_id
     `;
-    const result = await pool.query(query, [status, requestId]);
+    const requestResult = await pool.query(updateRequestQuery, [status, requestId]);
 
-    if (result.rowCount === 0) {
+    // // Insert a notification for the buyer
+
+    // const insertNotificationQuery = `
+    //   INSERT INTO notifications (user_id, content, created_at)
+    //   VALUES ($1, $2, NOW())
+    // `;
+    // const productQuery = `
+    //   SELECT p.name AS product_name, u.name AS seller_name
+    //   FROM products p
+    //   JOIN users u ON p.seller_id = u.user_id
+    //   WHERE p.product_id = $1
+    // `;
+    // const productResult = await pool.query(productQuery, [requestResult.rows[0].product_id]);
+    // const productName = productResult.rows[0].product_name;
+    // const sellerName = productResult.rows[0].seller_name;
+    // const notificationContent = `Your request for "${productName}" has been accepted by the seller "${sellerName}".`;
+
+    await pool.query(insertNotificationQuery, [requestResult.rows[0].buyer_id, notificationContent]);
+
+    if (requestResult.rowCount === 0) {
       return res.status(404).json({ error: "Purchase request not found." });
     }
 
-    res.status(200).json({ message: "Purchase request updated successfully.", request: result.rows[0] });
+    const productId = requestResult.rows[0].product_id;
+
+    // If the request is accepted, update the product's status to 'sold'
+    if (status === "accepted") {
+      const updateProductQuery = `
+        UPDATE products
+        SET status = 'sold'
+        WHERE product_id = $1
+      `;
+      await pool.query(updateProductQuery, [productId]);
+
+      // If the request is accepted, update the status of other purchase requests for the same product to 'declined'
+      const updateOtherRequestsQuery = `
+      UPDATE purchase_requests
+      SET status = 'declined'
+      WHERE product_id = $1 AND request_id != $2
+    `;
+    await pool.query(updateOtherRequestsQuery, [productId, requestId]);
+    }
+    
+
+    res.status(200).json({ message: `Purchase request ${status} successfully.` });
   } catch (err) {
     console.error("Error updating purchase request:", err.message);
     res.status(500).json({ error: "Failed to update purchase request." });
