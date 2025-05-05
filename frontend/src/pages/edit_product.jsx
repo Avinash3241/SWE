@@ -63,10 +63,10 @@ const EditProduct = () => {
       <div className="product-card1">
         <label>
           Product Image:
-          <input
-            type="file"
-            accept="image/*"
-            className="product-image-upload1"
+          <img
+            src={`/uploads/${product.product_id}.png`} // Display the product image
+            alt="Product"
+            className="product-image"
           />
         </label>
         <label>
@@ -97,14 +97,14 @@ const EditProduct = () => {
             className="product-price-input1"
           />
         </label>
-        <label>
+        {/* <label>
           Product Video:
           <input
             type="file"
             accept="video/*"
             className="product-video-upload1"
           />
-        </label>
+        </label> */}
         <button className="save-button1" onClick={handleSubmission}>
           Save Changes
         </button>

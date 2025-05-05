@@ -15,7 +15,7 @@ function Login() {
           sessionStorage.setItem("authToken", res.data.token);
           sessionStorage.setItem("UserId", res.data.user.user_id);
           console.log(res.data);
-          window.location.href = "/buypage";
+          window.location.href = "/home";
         } else {
           alert("Invalid Credentials");
         }

@@ -23,25 +23,6 @@ const PurchaseRequests = () => {
       });
   }, [sellerId]);
 
-  const handleUpdateStatus = (requestId, status) => {
-    axios
-      .put(`${process.env.REACT_APP_API_URL}/purchase_requests/${requestId}`, {
-        status,
-      })
-      .then((response) => {
-        alert(`Request ${status} successfully.`);
-        setRequests((prevRequests) =>
-          prevRequests.map((req) =>
-            req.request_id === requestId ? { ...req, status } : req
-          )
-        );
-      })
-      .catch((err) => {
-        console.error("Error updating request status:", err);
-        alert("Failed to update request status.");
-      });
-  };
-
   return (
     <div className="sell-page">
       <Dashboard /> {/* Top bar */}
@@ -66,32 +47,18 @@ const PurchaseRequests = () => {
                   <p>
                     <strong>Buyer Email:</strong> {request.buyer_email}
                   </p>
-                  {/* <p><strong>Buyer Contact:</strong> {request.buyer_contact}</p>
-                  <p><strong>Buyer Address:</strong> {request.buyer_address}</p> */}
                   <p>
                     <strong>Status:</strong> {request.status}
                   </p>
                   <div className="request-buttons">
-                    {request.status === "pending" && (
-                      <>
-                        <button
-                          className="accept-button"
-                          onClick={() =>
-                            handleUpdateStatus(request.request_id, "accepted")
-                          }
-                        >
-                          Accept
-                        </button>
-                        <button
-                          className="decline-button"
-                          onClick={() =>
-                            handleUpdateStatus(request.request_id, "declined")
-                          }
-                        >
-                          Decline
-                        </button>
-                      </>
-                    )}
+                    <button
+                      className="view-requests-button"
+                      onClick={() =>
+                        window.location.href = `/view_requests/${request.product_id}`
+                      }
+                    >
+                      View Requests
+                    </button>
                   </div>
                 </div>
               ))}

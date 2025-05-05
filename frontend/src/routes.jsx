@@ -17,8 +17,8 @@ import AddProduct from "./pages/AddProduct";
 import BuyPage from "./pages/BuyPage";  
 import Cart from "./pages/cart";
 import Drafts from "./pages/Drafts";
-import Notification from "./pages/notification";
-import StarredNotification from "./pages/starredNotifications";
+// import Notification from "./pages/notification";
+// import StarredNotification from "./pages/starredNotifications";
 // import ProductCard from "./components/ProductCard";
 import Purchase_requests from "./pages/purchase_requests";
 import Sent_requests from "./pages/sent_requests";
@@ -157,24 +157,24 @@ const routes = [
     ),
     // errorElement: <ErrorPage />,
   },
-  {
-    path: "/notification",
-    element: (
-      <PrivateRoute>
-        <Notification/>
-      </PrivateRoute>
-    ),
-    // errorElement: <ErrorPage />,
-  },
-  {
-    path: "/starred_notification",
-    element: (
-      <PrivateRoute>
-        <StarredNotification/>
-      </PrivateRoute>
-    ),
-    // errorElement: <ErrorPage />,
-  },
+  // {
+  //   path: "/notification",
+  //   element: (
+  //     <PrivateRoute>
+  //       <Notification/>
+  //     </PrivateRoute>
+  //   ),
+  //   // errorElement: <ErrorPage />,
+  // },
+  // {
+  //   path: "/starred_notification",
+  //   element: (
+  //     <PrivateRoute>
+  //       <StarredNotification/>
+  //     </PrivateRoute>
+  //   ),
+  //   // errorElement: <ErrorPage />,
+  // },
   {
     path: "/buypage",
     element: (

@@ -62,9 +62,19 @@ const Drafts = () => {
               {drafts.map((draft) => (
                 <div key={draft.product_id} className="draft-card">
                   <div className="draft-image">
-                    <img
-                      src={draft.media_url || "https://via.placeholder.com/150"}
+                    {/* <img
+                      src={`${process.env.REACT_APP_API_URL}/uploads/${draft.product_id}.png`} // Fetch image from uploads folder
                       alt={draft.name}
+                      onError={(e) => {
+                        e.target.src = "https://via.placeholder.com/150"; // Fallback image
+                      }}
+                    /> */}
+                    <img
+                      src={`${process.env.REACT_APP_API_URL}${draft.media_url}`} // Use the media_url from the backend
+                      alt={draft.name}
+                      onError={(e) => {
+                        e.target.src = "https://via.placeholder.com/150"; // Fallback image
+                      }}
                     />
                   </div>
                   <h2 className="draft-name">{draft.name}</h2>

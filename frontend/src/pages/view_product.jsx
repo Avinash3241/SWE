@@ -47,7 +47,6 @@ const ViewProduct = () => {
 
   const handleSendRequest = () => {
     const buyerId = sessionStorage.getItem('UserId');
-  
     axios
       .post(`${process.env.REACT_APP_API_URL}/sendRequest`, { buyer_id: buyerId, product_id })
       .then(() => {
@@ -66,7 +65,9 @@ const ViewProduct = () => {
       <h1>{product.name}</h1>
       <p><strong>Description:</strong> {product.description}</p>
       <p><strong>Price:</strong> ${product.price}</p>
-      <p><strong>Category:</strong> {product.category_name || 'N/A'}</p> {/* Display category name */}
+      {/* <p><strong>Category:</strong> {product.category_name || 'N/A'}</p> */}
+      <p><strong>Seller Name:</strong> {product.seller_name}</p>
+      <p><strong>Seller Email:</strong> {product.seller_email}</p>
       <div className="product-actions">
         <button className="add-to-cart-button" onClick={handleAddToCart}>
           {isInCart ? 'Already in Cart' : 'Add to Cart'}

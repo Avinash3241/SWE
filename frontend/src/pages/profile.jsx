@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/profile.css";
 import Dashboard from "./dashboard";
+import Preload_notifications from "../hooks/preload_notifications";
 
 const Profile = () => {
   const [profile, setProfile] = useState({
@@ -23,6 +24,7 @@ const Profile = () => {
 
   const userId = sessionStorage.getItem("UserId"); // Use sessionStorage
   const navigate = useNavigate();
+  const notifications = Preload_notifications().notifications;
 
   useEffect(() => {
     // Fetch profile, bought history, and sold history
@@ -59,7 +61,7 @@ const Profile = () => {
   const handleRemoveProfilePicture = () => {
     axios
       .put(`${process.env.REACT_APP_API_URL}/profile`, {
-        userId, // Ensure this is correctly retrieved
+        userId,
         contact_info: updatedData.contact_info,
         address: updatedData.address,
         profile_picture: null, // Set profile picture to null
@@ -111,7 +113,27 @@ const Profile = () => {
     navigate("/sellings/sellings_history");
   };
 
+  const handleDelete = (event, notificationId) => {
+    event.preventDefault();
+    console.log("notificationId",notificationId);
+    const userId = sessionStorage.getItem('UserId');
+    console.log("UserId:", userId);
+    if (!userId) {
+        alert('User not logged in!');
+        return;
+    }
+    axios.post(`${process.env.REACT_APP_API_URL}/deleteNotification`, { userId, notificationId })
+        .then(res => {
+            console.log("hello",res.data);
+            // alert("Notification deleted successfully");
+            window.location.reload();
+        }
+    )
+    .catch(err => alert(err.response?.data?.error || 'Notification delete failed'));
+}
+
   return (
+    
     <div className="profile-container">
       <h2>User Profile</h2>
       <div className="profile-info">
@@ -228,6 +250,18 @@ const Profile = () => {
           <button onClick={handleSoldHistory} className="history-button">
             Sold History
           </button>
+          <h1>Notifications</h1>
+          <div className="notification-container">
+            {(notifications === undefined || notifications.length === 0) ? (
+              <p>No notifications found.</p>
+            ) : (
+              notifications.map((notification, index) => (
+                <div className="notification-card" key={index}>
+                  <p>{notification.content}</p><button className='crossButton' onClick={(e) => handleDelete(e,notification.notification_id)}>X</button>
+                </div>
+              ))
+            )}
+          </div>
         </>
       )}
     </div>

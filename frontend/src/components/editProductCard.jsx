@@ -51,7 +51,12 @@ const EditProductCard = ({ product }) => {
   return (
     <div className="product-card">
       <div className="product-image">
-        <img src="/styles/1.jpeg" alt="Product" className="product-image"></img>
+      <img
+                src={`/uploads/${product.product_id}.png`} // Display the product image
+                alt="Product"
+                className="product-image"
+              />
+        {/* <img src=`/uploads/{product.}` alt="Product" className="product-image"></img> */}
       </div>
       <h2 className="product-name">{product.name}</h2>
       <p className="product-price">{product.price}</p>
