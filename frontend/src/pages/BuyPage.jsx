@@ -5,6 +5,7 @@ import ProductCard from "../components/ProductCard"; // Component to display pro
 import Preload from "../hooks/preload"; // Hook to fetch products
 import BuySidebar from "../components/BuySidebar"; // Import the BuySidebar component
 import "../styles/BuyPage.css"; // Styles for the Buy Page
+import ProductFilter from './handleFilter'
 
 const BuyPage = () => {
   const navigate = useNavigate();
@@ -21,6 +22,27 @@ const BuyPage = () => {
 
   const handleInput = (e) => {
     setSearchKey(e.target.value);
+  };
+
+  const handleFilterChange = ({ priceRange, categories }) => {
+    const [minPrice, maxPrice] = priceRange;
+  
+    const filtered = products.filter((product) => {
+      const price = parseFloat(product.price);
+      return price >= minPrice && price <= maxPrice;
+    });
+
+    // If you want to filter by categories as well, you can add that logic here
+    // For example:
+    console.log("Filtered products:", filtered);
+    const filteredByCategory = filtered.filter((product) =>
+      categories.includes(product.category)
+    );
+     console.log("Filtered by category:", filteredByCategory);
+    // setDisplayedProducts(filteredByCategory);
+    
+  
+    setDisplayedProducts(filtered);
   };
 
   const handleSearch = () => {
@@ -63,6 +85,7 @@ const BuyPage = () => {
   return (
     <div className="buy-page">
       <Dashboard /> {/* Top bar */}
+      <ProductFilter onFilterChange={handleFilterChange}/>
       <div className="buy-page-container">
         <BuySidebar
           activeSection={activeSection}

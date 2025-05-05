@@ -10,16 +10,26 @@ router.post('/getProduct', async (req, res) => {
 
     var query,values;
     if(isAll){
-      query = 'SELECT products.product_id ,\
-                      products.seller_id  ,\
-                      products.name as name,\
-                      products.description ,\
-                      products.price,\
-                      products.category_id,\
-                      products.created_at,\
-                      categories.name as C_name\
-       FROM products JOIN categories ON products.category_id = categories.category_id\
-       WHERE products.status = $1 AND products.seller_id != $2';
+      query = 'SELECT \
+              products.product_id,\
+              products.seller_id,\
+              products.name AS name,\
+              products.description,\
+              products.price,\
+              products.category_id,\
+              products.created_at,\
+              categories.name AS C_name\
+          FROM \
+              products\
+          JOIN \
+              categories ON products.category_id = categories.category_id\
+          LEFT JOIN \
+              interests ON interests.category_id = products.category_id AND interests.user_id = $2\
+          WHERE \
+              products.status = $1 AND products.seller_id != $2\
+          ORDER BY \
+              interests.user_id IS NOT NULL DESC, \
+              products.created_at DESC  ';
         values = ["available",userId];
     }
     else{

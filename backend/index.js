@@ -25,6 +25,8 @@ const profile = require('./routes/profile.js')
 const purchase_requests = require('./routes/purchase_requests.js')
 const sendRequest = require('./routes/sendRequest.js')
 const sent_requests = require('./routes/sent_requests.js')
+const getUserInterests = require('./routes/getUserInterests.js')
+const updateUserInterests = require('./routes/updateUserInterests.js')
 
 const app = express();
 app.use(cors());
@@ -54,6 +56,8 @@ app.use('/',profile)
 app.use('/',purchase_requests)
 app.use('/',sendRequest)
 app.use('/',sent_requests)
+app.use('/',getUserInterests)
+app.use('/',updateUserInterests)
 
 app.get('/', (req, res) => res.send('API Running'));
 app.listen(5000, () => console.log('Server running on port 5000'));

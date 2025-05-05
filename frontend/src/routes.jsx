@@ -22,6 +22,7 @@ import Drafts from "./pages/Drafts";
 // import ProductCard from "./components/ProductCard";
 import Purchase_requests from "./pages/purchase_requests";
 import Sent_requests from "./pages/sent_requests";
+import InterestedCategories from "./pages/interested_categories";
 
 
 const routes = [
@@ -211,6 +212,15 @@ const routes = [
     ),
     // errorElement: <ErrorPage />,
   },
+  {
+    path: "/interested_categories",
+    element: (
+      <PrivateRoute>
+        <InterestedCategories/>
+      </PrivateRoute>
+    ),
+    // errorElement: <ErrorPage />,
+  }
   
 ];
 
